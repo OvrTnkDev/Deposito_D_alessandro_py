@@ -72,11 +72,10 @@ pip install -r requirements.txt
 
 ```
 📦 Deposito_D_alessandro_py
-├── 📂 progetti/          # Progetti principali
-├── 📂 esercizi/          # Esercizi pratici
-├── 📂 data/              # Dataset e file di dati
-├── 📂 notebooks/         # Jupyter notebooks
-└── 📄 requirements.txt    # Dipendenze del progetto
+├── 📂 Corso_Python_02-26/ # Progetti principali
+├─── 📂 xx-xx-26/
+├──── 📂 Mattina/
+└──── 📂 Pomeriggio/       # Esercizi pratici
 ```
 
 ---
