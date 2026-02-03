@@ -1,0 +1,102 @@
+---
+---
+<section id="collection" class="gallery-section">
+    <div class="gallery-grid">
+        <div class="gallery-item item-1">
+            <img src="/images/watch-frieza.png" alt="The Frieza Complication">
+            <div class="caption">
+                <h4>Ref. 5396G</h4>
+                <p>The Frieza Perpetual Calendar</p>
+            </div>
+        </div>
+        <div class="gallery-item item-2">
+            <img src="/images/watch-saiyan.png" alt="Super Saiyan Rose Gold">
+            <div class="caption">
+                <h4>Ref. 5711/1R</h4>
+                <p>Saiyan Rose Gold</p>
+            </div>
+        </div>
+        <div class="gallery-item item-3">
+            <img src="/images/watch-roshi.png" alt="Turtle Hermit Leather">
+            <div class="caption">
+                <h4>Ref. 5172G</h4>
+                <p>Turtle Hermit Strap</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .gallery-section {
+        background: var(--color-paper);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        height: 600px;
+    }
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        cursor: crosshair;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s ease;
+    }
+
+    .gallery-item:hover img {
+        transform: scale(1.05);
+    }
+
+    .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 3rem 2rem;
+        background: linear-gradient(to top, rgba(62, 58, 54, 0.9), transparent);
+        color: var(--color-paper);
+        transform: translateY(100%);
+        transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover .caption {
+        transform: translateY(0);
+    }
+
+    h4 {
+        color: var(--color-gold);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    p {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+        
+        .gallery-item {
+            height: 400px;
+        }
+
+        .caption {
+            transform: translateY(0);
+        }
+    }
+</style>

@@ -1,0 +1,102 @@
+---
+---
+<section id="specs" class="specs-section">
+    <div class="container">
+        <h2>Capsule Technology.</h2>
+        <p class="section-desc">Innovative engineering discreetly concealed within a classic silhouette.</p>
+        
+        <div class="specs-grid">
+            <div class="spec-card">
+                <div class="icon">🔮</div>
+                <h3>Dragon Radar Crystal</h3>
+                <p>Anti-reflective sapphire with integrated HUD frequencies. Locate your objective, anywhere.</p>
+            </div>
+            <div class="spec-card">
+                <div class="icon">🍘</div>
+                <h3>Senzu Energy Cell</h3>
+                <p>Infinite stamina. Our 7-day reserve ensures you are always ready for the next tournament.</p>
+            </div>
+            <div class="spec-card">
+                <div class="icon">👁️</div>
+                <h3>Power Level Scouter</h3>
+                <p>Bio-metric sensors track heart rate, Ki fluctuations, and stress levels in real-time.</p>
+            </div>
+            <div class="spec-card">
+                <div class="icon">🌫️</div>
+                <h3>Hyperbolic Casing</h3>
+                <p>Forged from Katchin steel. 100m Water Resistance. Virtually indestructible.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .specs-section {
+        padding: 5rem 0 10rem 0;
+        background: #F2EFE9; /* Slightly darker cream */
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 3rem;
+        color: var(--color-ink);
+        margin-bottom: 1rem;
+    }
+
+    .section-desc {
+        color: var(--color-text-muted);
+        font-size: 1.2rem;
+        margin-bottom: 5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: var(--font-heading);
+        font-style: italic;
+    }
+
+    .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+    }
+
+    .spec-card {
+        padding: 3rem 2rem;
+        border: 1px solid rgba(62, 58, 54, 0.1);
+        border-radius: 0;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        background: var(--color-paper);
+    }
+
+    .spec-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--color-gold);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        color: var(--color-ink);
+        margin-bottom: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .spec-card p {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+</style>

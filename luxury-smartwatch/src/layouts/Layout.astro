@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+		<title>LuxChronos - Masterpiece on Wrist</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--color-paper: #FDFBF7;
+		--color-ink: #3E3A36;
+		--color-gold: #C5A059; /* Antique Gold */
+		--color-gold-light: #E6BE8A;
+		--color-dragon-orange: #FF9900; /* Subtle accent */
+		--color-text-muted: #8C8680;
+		
+		--font-heading: 'Playfair Display', serif;
+		--font-body: 'Lato', sans-serif;
+	}
+
+	html {
+		font-family: var(--font-body);
+		background: var(--color-paper);
+		color: var(--color-ink);
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-heading);
+		font-weight: 700;
+		color: var(--color-ink);
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+
+	img {
+		max-width: 100%;
+		display: block;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+    ::selection {
+        background: var(--color-gold);
+        color: white;
+    }
+</style>

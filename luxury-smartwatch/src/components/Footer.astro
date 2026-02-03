@@ -1,0 +1,131 @@
+---
+---
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="brand-col">
+                <div class="logo">SAIYAN & FILS</div>
+                <p>Preserving the legacy of the Dragon since age 739.</p>
+            </div>
+            <div class="links-col">
+                <h4>Maison</h4>
+                <ul>
+                    <li><a href="#artisan">The Heritage</a></li>
+                    <li><a href="#collection">Grand Complications</a></li>
+                    <li><a href="#specs">Technique</a></li>
+                </ul>
+            </div>
+            <div class="newsletter-col">
+                <h4>The Register</h4>
+                <p>Enter the World Martial Arts Tournament of fine watchmaking.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Your email address" />
+                    <button type="submit">→</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Saiyan & Fils. Geneve • Tokyo • West City.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: var(--color-ink);
+        padding: 5rem 0 2rem 0;
+        color: rgba(253, 251, 247, 0.7);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1.5fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .logo {
+        color: var(--color-paper);
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    h4 {
+        color: var(--color-gold);
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        margin-bottom: 1.5rem;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    li {
+        margin-bottom: 0.8rem;
+    }
+
+    a {
+        transition: color 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+    }
+
+    a:hover {
+        color: var(--color-gold);
+    }
+
+    .newsletter-form {
+        display: flex;
+        border-bottom: 1px solid rgba(253, 251, 247, 0.3);
+        padding-bottom: 0.5rem;
+        margin-top: 1.5rem;
+    }
+
+    input {
+        background: transparent;
+        border: none;
+        color: var(--color-paper);
+        width: 100%;
+        outline: none;
+        font-family: var(--font-body);
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        color: var(--color-gold);
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(253, 251, 247, 0.1);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+    }
+</style>

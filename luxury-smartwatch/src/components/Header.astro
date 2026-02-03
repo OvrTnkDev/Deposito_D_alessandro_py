@@ -1,0 +1,112 @@
+---
+---
+<header class="header">
+    <div class="container">
+        <div class="logo-wrapper">
+            <a href="/" class="logo">SAIYAN & FILS</a>
+            <span class="tagline">GENEVE • TOKYO • CAPSULE CORP</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#artisan">The Heritage</a></li>
+                <li><a href="#collection">Grand Complications</a></li>
+                <li><a href="#specs">Technique</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        z-index: 100;
+        background: rgba(253, 251, 247, 0.95);
+        border-bottom: 1px solid rgba(62, 58, 54, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo-wrapper {
+        text-align: center;
+    }
+
+    .logo {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        letter-spacing: 0.15em;
+        color: var(--color-ink);
+        font-weight: 700;
+        text-transform: uppercase;
+        display: block;
+    }
+
+    .tagline {
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--color-gold);
+        display: block;
+        margin-top: 0.2rem;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 4rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-ink);
+        transition: color 0.3s ease;
+        position: relative;
+    }
+
+    nav a:hover {
+        color: var(--color-gold);
+    }
+
+    nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 1px;
+        background: var(--color-dragon-orange);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+    }
+
+    nav a:hover::after {
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .logo {
+            font-size: 1.5rem;
+        }
+        
+        nav {
+            display: none;
+        }
+    }
+</style>
