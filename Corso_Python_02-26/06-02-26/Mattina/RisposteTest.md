@@ -66,11 +66,11 @@ Gli insiemi sono modificabili, non sono ordinati, e non possono avere più tipi 
 
 # 17.Esercizio 1: Condizioni e cicli
 
-- **[Condizioni e cicli](./Corso_Python_02-26/06-02-26/Mattina/Condizioni_e_Cicli.py)**
+- **[Condizioni e cicli](./Condizioni_e_Cicli.py)**
 
 # 18.Esercizio 2: Funzioni e Liste
 
-- **[Funzioni e Liste](./Corso_Python_02-26/06-02-26/Mattina/Funzioni_e_Liste.py)**
+- **[Funzioni e Liste](./Funzioni_e_Liste.py)**
 
 ---
 
