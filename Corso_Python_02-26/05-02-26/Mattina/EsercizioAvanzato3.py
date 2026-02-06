@@ -40,6 +40,13 @@ while True:
             str1, str2 = s_list
             if len(str1) != len(str2):
                 print(f"Le stringhe '{str1}' e '{str2}' hanno lunghezze diverse ({len(str1)} e {len(str2)} caratteri).")
+            else:
+                # Confronto carattere per carattere e vedere se sono polinomi con sorted() che ordina i caratteri in ordine alfabetico
+                if sorted(str1) == sorted(str2):
+                    print(f"Le stringhe '{str1}' e '{str2}' sono polinomi (hanno gli stessi caratteri).")
+                else:
+                    print(f"Le stringhe '{str1}' e '{str2}' hanno la stessa lunghezza ma non sono polinomi.")
+                
             """if str1 == str2:
                 print(f"Le stringhe '{str1}' e '{str2}' sono uguali.")
             else:
