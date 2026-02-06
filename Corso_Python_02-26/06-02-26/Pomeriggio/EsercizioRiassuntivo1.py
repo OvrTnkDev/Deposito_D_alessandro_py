@@ -7,7 +7,6 @@ Se decide di lanciare di nuovo, deve ottenere la stessa somma per vincere, altri
 
 import random
 from termcolor import colored
-import sys
 
 # Funzioni per il gioco dei dadi
 def lanciaBroski():
