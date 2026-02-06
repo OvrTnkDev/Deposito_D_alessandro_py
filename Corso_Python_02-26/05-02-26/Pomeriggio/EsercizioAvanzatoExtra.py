@@ -27,4 +27,5 @@ while True:
 print(f"Hai creato la lista: {lst}\n")
     
 cnv = conversion(lst)
+# __name__ restituisce il nome del tipo di dato
 print(f"Vediamo ora la conversione, era una *{type(lst).__name__}* ed è diventata una *{type(cnv).__name__}*:\n{cnv}\n")
