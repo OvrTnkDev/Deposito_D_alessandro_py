@@ -17,9 +17,6 @@ Testare la Classe:
 Creare un'istanza della classe Ristorante, passando i valori appropriati al costruttore.
 Testare tutti i metodi creati per assicurarsi che funzionino come previsto."""
 
-# sleep mette in pausa l'esecuzione del programma per un tot numero di secondi
-from asyncio import sleep
-
 # creo il dizionario del menu
 class Menu():
     menu = {"Cucina italiana": {"Pasta": 10, "Pizza": 8, "Lasagna": 14},
@@ -68,25 +65,31 @@ class Ristorante():
             
     # aggiungi al menu
     def aggiungi_al_menu(self, t_cucina, piatto, prezzo):
-        # se il tipo esiste già nel menu, aggiungo il piatto al dizionario nel tipo di cucina
-        if t_cucina in self.menu:
-            self.menu[t_cucina][piatto]=prezzo
-        # se il tipo di cucina non esiste, lo creo e aggiungo il piatto al dizionario del nuovo tipo di cucina
+        if self.opn:
+            # se il tipo esiste già nel menu, aggiungo il piatto al dizionario nel tipo di cucina
+            if t_cucina in self.menu:
+                self.menu[t_cucina][piatto]=prezzo
+            # se il tipo di cucina non esiste, lo creo e aggiungo il piatto al dizionario del nuovo tipo di cucina
+            else:
+                self.menu[t_cucina] = {piatto: prezzo}
         else:
-            self.menu[t_cucina] = {piatto: prezzo}
+            print(f"Il ristorante '{self.nome}' è chiuso. Non è possibile modificare il menu.")
 
     
     # togli dal menu
     def togli_dal_menu(self, t_cucina, piatto):
         # se il tipo di cucina esiste nel menu, controllo se il piatto esiste e lo rimuovo
-        if t_cucina in self.menu:
-            if piatto in self.menu[t_cucina]:
-                del self.menu[t_cucina][piatto]
-                print(f"Il piatto '{piatto}' è stato rimosso dal menu del ristorante '{self.nome}'.")
+        if self.opn:
+            if t_cucina in self.menu:
+                if piatto in self.menu[t_cucina]:
+                    del self.menu[t_cucina][piatto]
+                    print(f"Il piatto '{piatto}' è stato rimosso dal menu del ristorante '{self.nome}'.")
+                else:
+                    print(f"Il piatto '{piatto}' non esiste nel menu del ristorante '{self.nome}'.")
             else:
-                print(f"Il piatto '{piatto}' non esiste nel menu del ristorante '{self.nome}'.")
+                print(f"Il tipo di cucina '{t_cucina}' non esiste nel menu del ristorante '{self.nome}'.")
         else:
-            print(f"Il tipo di cucina '{t_cucina}' non esiste nel menu del ristorante '{self.nome}'.")
+            print(f"Il ristorante '{self.nome}' è chiuso. Non è possibile modificare il menu.")
     
     # stampa menu
     def stampa_menu(self):
@@ -104,27 +107,34 @@ def main():
     # creo l'oggetto menu e ristorante
     menu_OBJ = Menu()
     ristorante_OBJ = Ristorante("Il cardamone", "Cucina italiana", menu_OBJ.menu)
-    
-    # test dei metodi
-    ristorante_OBJ.stato_apertura()
-    # con sleep() metto in pausa per n secondi l'esecuzione del programma
-    sleep(2)
-    # apro il ristorante e stampo lo stato di apertura
-    ristorante_OBJ.apri_ristorante()
-    # do il benvenuto e descrivo il ristorante
-    print(ristorante_OBJ)
-    # stampo il menu
-    ristorante_OBJ.stampa_menu()
-    # aggiungo un nuovo piatto al menu e stampo il menu aggiornato
-    ristorante_OBJ.aggiungi_al_menu("Cucina italiana", "Risotto", 11)
-    ristorante_OBJ.stampa_menu()
-    # rimuovo un piatto dal menu e stampo il menu aggiornato
-    ristorante_OBJ.togli_dal_menu("Cucina italiana", "Pizza")
-    ristorante_OBJ.stampa_menu()
-    # chiudo il ristorante e stampo lo stato di apertura
-    ristorante_OBJ.chiudi_ristorante()
-    # stampo lo stato di apertura del ristorante
-    ristorante_OBJ.stato_apertura()
+
+    while True:
+        scelta = input("Scegli un metodo da testare:\n0) Esci\n1) stato_apertura\n2) apri_ristorante\n" +
+                       "3) chiudi_ristorante\n4) aggiungi_al_menu\n5) togli_dal_menu\n6) stampa_menu\n7) descrivi_ristorante\n")
+        
+        match scelta:
+            case "0":
+                print("Programma terminato.")
+                exit()
+            case "1":
+                ristorante_OBJ.stato_apertura()
+            case "2":
+                ristorante_OBJ.apri_ristorante()
+            case "3":
+                ristorante_OBJ.chiudi_ristorante()
+            case "4":
+                t_cucina = input("Inserisci il tipo di cucina: ")
+                piatto = input("Inserisci il nome del piatto: ")
+                prezzo = float(input("Inserisci il prezzo del piatto: "))
+                ristorante_OBJ.aggiungi_al_menu(t_cucina, piatto, prezzo)
+            case "5":
+                t_cucina = input("Inserisci il tipo di cucina: ")
+                piatto = input("Inserisci il nome del piatto: ")
+                ristorante_OBJ.togli_dal_menu(t_cucina, piatto)
+            case "6":
+                ristorante_OBJ.stampa_menu()
+            case "7":
+                print(ristorante_OBJ)
 
 
 if __name__ == "__main__":
