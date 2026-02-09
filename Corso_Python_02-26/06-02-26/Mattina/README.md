@@ -79,6 +79,10 @@ Gli insiemi sono modificabili, non sono ordinati, e non possono avere più tipi 
 # 20.EXTRA: Fai un meme sul corso
 
 - **[MEME](https://imgflip.com/i/ajf17y)**
+- 
+<div align="center">
+  <img src="meme.jpg" width="100%" alt="Meme" />
+</div>
 
 ---
 
