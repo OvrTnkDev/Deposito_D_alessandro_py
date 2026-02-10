@@ -26,7 +26,7 @@ Puoi pre inserire gli amministratori non i clienti
 Il sistema dovrebbe permettere di simulare un'interazione base tra il cliente e il negozio dopo un login e una registrazione,
 nonché fornire gli strumenti necessari per la manutenzione e l'analisi del negozio da parte degli amministratori."""
 
-
+# Creazione dell'inventario iniziale tramite dizionario
 inventario = {"elettronica":{"telefono": {"prezzo": 500, "quantità": 10},
                             "laptop": {"prezzo": 1000, "quantità": 5}},
                 "abbigliamento":{"maglietta": {"prezzo": 20, "quantità": 50},
@@ -34,16 +34,17 @@ inventario = {"elettronica":{"telefono": {"prezzo": 500, "quantità": 10},
                 "games":{"videogioco1": {"prezzo": 60, "quantità": 20},
                         "videogioco2": {"prezzo": 70, "quantità": 15}}}
 
-
+# Creazione delle classi Utente
 class Utente():
+    #creo password globali fittizie per amministratore e cliente
     _password_admin = "admin123"
     _password_utente = "utente123"
-    
+    #creo il costruttore della classe che prende in input nome, ruolo e password
     def __init__ (self, nome, ruolo, password):
         self.nome = nome
         self.ruolo = ruolo
         self.password = password
-        
+    #creo i metodi di login per amministratore e cliente che confrontano la password inserita con quella predefinita
     def login_admin(self):
         if self.password == self._password_admin:
             print(f"Benvenuto {self.nome}, sei loggato come {self.ruolo}.")
@@ -51,7 +52,7 @@ class Utente():
         else:
             print("Password errata. Accesso negato.")
             return False
-        
+
     def login_utente(self):
         if self.password == self._password_utente:
             print(f"Benvenuto {self.nome}, sei loggato come {self.ruolo}.")
@@ -59,9 +60,9 @@ class Utente():
         else:
             print("Password errata. Accesso negato.")
             return False
-
+# creazione della classe negozio
 class Negozio():
-    def __init__(self, nome, ruolo, inventario):
+    def __init__(self, nome, ruolo, inventario=None):
         self.nome = nome
         self.ruolo = ruolo
         
@@ -70,7 +71,7 @@ class Negozio():
             self.inventario = inventario
         else:
             self.guadagni = 0
-            self.inventario = inventario.clear()
+            self.inventario = {}
             
     def visualizza_inventario(self):
         for cat, prod in self.inventario.items():
@@ -86,7 +87,7 @@ class Negozio():
                 prezzo_totale = self.inventario[categoria][prodotto]["prezzo"] * quantità
                 self.carrello[prodotto] = {"prezzo": prezzo_totale, "quantità": quantità}
                 self.inventario[categoria][prodotto]["quantità"] -= quantità
-                print(f"Hai aggiunto {quantità} {prodotto}(s) al carrello. Prezzo totale: {prezzo_totale}€")
+                print(f"Hai aggiunto {quantità} {prodotto} al carrello. Prezzo totale: {prezzo_totale}€")
                 
             else:
                 print("Quantità richiesta non disponibile.")
@@ -99,17 +100,47 @@ class Negozio():
             self.inventario[categoria] = {}
 
         self.inventario[categoria][prodotto] = {"prezzo": prezzo, "quantità": quantità}
-    
+
+# Funzione per gestire l'interazione del cliente
 def cliente():
     while True:
             n = input("Inserisci il tuo nome: ")
             p = input("Inserisci la tua password: ")
             cliente = Utente(n, "cliente", p)
             if not cliente.login_utente():
-                continue
+                break
             else:
                 negozio = Negozio(n, "cliente", inventario)
-                r = input("\n0: Visualizza inventario\n1: Acquista prodotto\n2: Esci\nScegli un'opzione: ")
+                while True:
+                    r = input("\n0: Visualizza inventario\n1: Acquista prodotto\n2: Esci\nScegli un'opzione: ")
+                    match r:
+                        case "0":
+                            print("\nInventario disponibile:")
+                            negozio.visualizza_inventario()
+                        case "1":
+                            categoria = input("Inserisci la categoria del prodotto: ")
+                            prodotto = input("Inserisci il nome del prodotto: ")
+                            quantità = int(input("Inserisci la quantità: "))
+                            negozio.acquista_prodotto(categoria, prodotto, quantità)
+                        case "2":
+                            print("Uscita dal sistema...")
+                            exit()
+                        case _:
+                            print("Scelta non valida. Per favore, inserisci '0', '1' o '2'.")
+                            continue
+
+# Funzione per gestire l'interazione dell'amministratore
+def amministratore():
+    while True:
+        n = input("Inserisci il tuo nome: ")
+        p = input("Inserisci la tua password: ")
+        admin = Utente(n, "amministratore", p)
+        if not admin.login_admin():
+            break
+        else:
+            negozio = Negozio(n, "amministratore")
+            while True:
+                r = input("\n0: Visualizza inventario\n1: Aggiungi prodotto\n2: Esci\nScegli un'opzione: ")
                 match r:
                     case "0":
                         print("\nInventario disponibile:")
@@ -117,43 +148,17 @@ def cliente():
                     case "1":
                         categoria = input("Inserisci la categoria del prodotto: ")
                         prodotto = input("Inserisci il nome del prodotto: ")
-                        quantità = int(input("Inserisci la quantità: "))
-                        negozio.acquista_prodotto(categoria, prodotto, quantità)
+                        prezzo = float(input("Inserisci il prezzo del prodotto: "))
+                        quantità = int(input("Inserisci la quantità del prodotto: "))
+                        negozio.aggiungi_prodotto(categoria, prodotto, prezzo, quantità)
                     case "2":
                         print("Uscita dal sistema...")
-                        break
+                        exit()
                     case _:
                         print("Scelta non valida. Per favore, inserisci '0', '1' o '2'.")
                         continue
-
-
-def amministratore():
-    while True:
-        n = input("Inserisci il tuo nome: ")
-        p = input("Inserisci la tua password: ")
-        admin = Utente(n, "amministratore", p)
-        if not admin.login_admin():
-            continue
-        else:
-            negozio = Negozio(n, "amministratore", inventario)
-            r = input("\n0: Visualizza inventario\n1: Aggiungi prodotto\n2: Esci\nScegli un'opzione: ")
-            match r:
-                case "0":
-                    print("\nInventario disponibile:")
-                    negozio.visualizza_inventario()
-                case "1":
-                    categoria = input("Inserisci la categoria del prodotto: ")
-                    prodotto = input("Inserisci il nome del prodotto: ")
-                    prezzo = float(input("Inserisci il prezzo del prodotto: "))
-                    quantità = int(input("Inserisci la quantità del prodotto: "))
-                    negozio.aggiungi_prodotto(categoria, prodotto, prezzo, quantità)
-                case "2":
-                    print("Uscita dal sistema...")
-                    exit()
-                case _:
-                    print("Scelta non valida. Per favore, inserisci '0', '1' o '2'.")
-                    continue
         
+# Funzione principale per gestire l'interazione iniziale
 def main():
     while True:
         print("Benvenuto nel sistema di gestione del negozio!")
@@ -176,6 +181,6 @@ def main():
                 print("Scelta non valida. Per favore, inserisci 'a' per amministratore, 'c' per cliente o 'q' per uscire.")
                 continue
 
-
+# Avvio del programma
 if __name__ == "__main__":
     main()
