@@ -26,13 +26,13 @@ Puoi pre inserire gli amministratori non i clienti
 Il sistema dovrebbe permettere di simulare un'interazione base tra il cliente e il negozio dopo un login e una registrazione,
 nonché fornire gli strumenti necessari per la manutenzione e l'analisi del negozio da parte degli amministratori."""
 
-# Creazione dell'inventario iniziale tramite dizionario
-inventario = {"elettronica":{"telefono": {"prezzo": 500, "quantità": 10},
+# Creazione dell'inventario iniziale tramite dizionario hardcoded
+"""inventario = {"elettronica":{"telefono": {"prezzo": 500, "quantità": 10},
                             "laptop": {"prezzo": 1000, "quantità": 5}},
                 "abbigliamento":{"maglietta": {"prezzo": 20, "quantità": 50},
                                 "jeans": {"prezzo": 40, "quantità": 30}},
                 "games":{"videogioco1": {"prezzo": 60, "quantità": 20},
-                        "videogioco2": {"prezzo": 70, "quantità": 15}}}
+                        "videogioco2": {"prezzo": 70, "quantità": 15}}}"""
 
 # Creazione delle classi Utente
 class Utente():
@@ -62,16 +62,13 @@ class Utente():
             return False
 # creazione della classe negozio
 class Negozio():
-    def __init__(self, nome, ruolo, inventario=None):
+    inventario = {}
+    carrello = {}
+    
+    #creo il costruttore della classe che prende in input nome, ruolo e inventario (opzionale)
+    def __init__(self, nome, ruolo):
         self.nome = nome
         self.ruolo = ruolo
-        
-        if self.ruolo == "cliente":
-            self.carrello = {}
-            self.inventario = inventario
-        else:
-            self.guadagni = 0
-            self.inventario = {}
             
     def visualizza_inventario(self):
         for cat, prod in self.inventario.items():
@@ -80,10 +77,11 @@ class Negozio():
                 print(f"  - {nome}: Prezzo: {info['prezzo']}€, Quantità: {info['quantità']}")
     
     def acquista_prodotto(self, categoria, prodotto, quantità):
+        #verifico se la categoria e il prodotto esistono nell'inventario
         if categoria in self.inventario and prodotto in self.inventario[categoria]:
-            
+            #verifico se la quantità richiesta è disponibile
             if self.inventario[categoria][prodotto]["quantità"] >= quantità:
-                
+                #calcolo il prezzo totale dell'acquisto e lo aggiungo al carrello del cliente, aggiornando l'inventario di conseguenza
                 prezzo_totale = self.inventario[categoria][prodotto]["prezzo"] * quantità
                 self.carrello[prodotto] = {"prezzo": prezzo_totale, "quantità": quantità}
                 self.inventario[categoria][prodotto]["quantità"] -= quantità
@@ -100,6 +98,10 @@ class Negozio():
             self.inventario[categoria] = {}
 
         self.inventario[categoria][prodotto] = {"prezzo": prezzo, "quantità": quantità}
+        
+    def controllo_guadagni(self):
+        guadagni_totali = sum(item["prezzo"] for item in self.carrello.values())
+        print(f"Guadagni totali: {guadagni_totali}€")
 
 # Funzione per gestire l'interazione del cliente
 def cliente():
@@ -110,21 +112,25 @@ def cliente():
             if not cliente.login_utente():
                 break
             else:
-                negozio = Negozio(n, "cliente", inventario)
+                negozio_OBJ = Negozio(n, "cliente")
                 while True:
-                    r = input("\n0: Visualizza inventario\n1: Acquista prodotto\n2: Esci\nScegli un'opzione: ")
+                    r = input("\n0: Visualizza inventario\n1: Acquista prodotto\n2: Esci\n3: Esci dal menu utente\nScegli un'opzione: ")
                     match r:
                         case "0":
                             print("\nInventario disponibile:")
-                            negozio.visualizza_inventario()
+                            negozio_OBJ.visualizza_inventario()
                         case "1":
                             categoria = input("Inserisci la categoria del prodotto: ")
                             prodotto = input("Inserisci il nome del prodotto: ")
                             quantità = int(input("Inserisci la quantità: "))
-                            negozio.acquista_prodotto(categoria, prodotto, quantità)
+                            negozio_OBJ.acquista_prodotto(categoria, prodotto, quantità)
                         case "2":
                             print("Uscita dal sistema...")
                             exit()
+                        case "3":
+                            print("Uscita e logout...")
+                            # strategia per uscire e tornare al menu principale senza chiudere il programma
+                            return
                         case _:
                             print("Scelta non valida. Per favore, inserisci '0', '1' o '2'.")
                             continue
@@ -138,24 +144,31 @@ def amministratore():
         if not admin.login_admin():
             break
         else:
-            negozio = Negozio(n, "amministratore")
+            negozio_OBJ = Negozio(n, "amministratore")
             while True:
-                r = input("\n0: Visualizza inventario\n1: Aggiungi prodotto\n2: Esci\nScegli un'opzione: ")
+                r = input("\n0: Visualizza inventario\n1: Aggiungi prodotto\n2: Controllo guadagni\n3: Esci\n4: Esci dal menu amministratore\nScegli un'opzione: ")
                 match r:
                     case "0":
                         print("\nInventario disponibile:")
-                        negozio.visualizza_inventario()
+                        negozio_OBJ.visualizza_inventario()
                     case "1":
                         categoria = input("Inserisci la categoria del prodotto: ")
                         prodotto = input("Inserisci il nome del prodotto: ")
                         prezzo = float(input("Inserisci il prezzo del prodotto: "))
                         quantità = int(input("Inserisci la quantità del prodotto: "))
-                        negozio.aggiungi_prodotto(categoria, prodotto, prezzo, quantità)
+                        negozio_OBJ.aggiungi_prodotto(categoria, prodotto, prezzo, quantità)
                     case "2":
+                        print("Guadagni attuali:")
+                        negozio_OBJ.controllo_guadagni()
+                    case "3":
                         print("Uscita dal sistema...")
                         exit()
+                    case "4":
+                        print("Uscita e logout...")
+                        # strategia per uscire e tornare al menu principale senza chiudere il programma
+                        return
                     case _:
-                        print("Scelta non valida. Per favore, inserisci '0', '1' o '2'.")
+                        print("Scelta non valida. Per favore, inserisci '0', '1', '2' o '4'.")
                         continue
         
 # Funzione principale per gestire l'interazione iniziale
