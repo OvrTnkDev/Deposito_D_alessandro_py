@@ -48,8 +48,8 @@ class Prodotto(Automobile, Moto):
         return self.prezzo_vendita - self.costo_produzione
     
 class Fabrica():
-    def __init__(self):
-        self.inventario = {}
+    open = False
+    inventario = {}
     
     def aggiungi_prodotto(self, prodotto, quantità):
         if prodotto.nome in self.inventario:
@@ -72,28 +72,69 @@ class Fabrica():
             print(f"Resi {quantità} {prodotto.nome} all'inventario.")
         else:
             print(f"{prodotto.nome} non esiste nell'inventario.")
-            
 
 def main():
     fabrica_OBJ = Fabrica()
+    print("Benvenuto nella fabbrica!")
     
-    auto1_OBJ = Prodotto("Auto Sportiva", 20000, 30000)
-    moto1_OBJ = Prodotto("Moto da Corsa", 10000, 15000)
-    
-    print("\n")
-    
-    fabrica_OBJ.aggiungi_prodotto(auto1_OBJ, 10)
-    fabrica_OBJ.aggiungi_prodotto(moto1_OBJ, 20)
-    
-    print("\n")
-    
-    fabrica_OBJ.vendi_prodotto(auto1_OBJ, 2)
-    fabrica_OBJ.vendi_prodotto(moto1_OBJ, 5)
-    
-    print("\n")
-    
-    fabrica_OBJ.resi_prodotto(auto1_OBJ, 1)
-    fabrica_OBJ.resi_prodotto(moto1_OBJ, 2)
+    if not Fabrica.open:
+        print("La fabbrica è chiusa. Aprendo la fabbrica...")
+        Fabrica.open = True
+
+    while True:
+        print("\nScegli un opzione:\n1. Aggiungi prodotto\n2. Vendi prodotto\n3. Resi prodotto\n4. Esci")
+        s = input("scegli l'opzione: ")
+        match s:
+            case "1":
+                i = input("Cosa vui aggiungere? (1.Auto - 2.Moto): ")
+                if i == "1":
+                    n = input("Inserisci il nome dell'auto: ")
+                    cp = float(input("Inserisci il costo di produzione: "))
+                    pv = float(input("Inserisci il prezzo di vendita: "))
+                    q = int(input("Inserisci la quantità da aggiungere: "))
+                    
+                    auto_OBJ = Prodotto(n, cp, pv)
+                    fabrica_OBJ.aggiungi_prodotto(auto_OBJ, q)
+                elif i == "2":
+                    n = input("Inserisci il nome della moto: ")
+                    cp = float(input("Inserisci il costo di produzione: "))
+                    pv = float(input("Inserisci il prezzo di vendita: "))
+                    q = int(input("Inserisci la quantità da aggiungere: "))
+                    
+                    moto_OBJ = Prodotto(n, cp, pv)
+                    fabrica_OBJ.aggiungi_prodotto(moto_OBJ, q)
+                else:
+                    print("Opzione non valida, riprova.")
+                    continue
+            case "2":
+                n = input("Inserisci il nome del prodotto da vendere: ")
+                q = int(input("Inserisci la quantità da vendere: "))
+                cp = float(input("Inserisci il costo di produzione: "))
+                pv = float(input("Inserisci il prezzo di vendita: "))
+                if n in fabrica_OBJ.inventario:
+                    prodotto_OBJ = Prodotto(n, cp, pv)
+                    fabrica_OBJ.vendi_prodotto(prodotto_OBJ, q)
+                else:
+                    print(f"{n} non esiste nell'inventario.")
+                    
+            case "3":
+                n = input("Inserisci il nome del prodotto da restituire: ")
+                q = int(input("Inserisci la quantità da restituire: "))
+                cp = float(input("Inserisci il costo di produzione: "))
+                pv = float(input("Inserisci il prezzo di vendita: "))
+                
+                if n in fabrica_OBJ.inventario:
+                    prodotto_OBJ = Prodotto(n, cp, pv)
+                    fabrica_OBJ.resi_prodotto(prodotto_OBJ, q)
+                else:
+                    print(f"{n} non esiste nell'inventario.")
+            case "4":
+                    print("Arrivederci!")
+                    break
+            case _ :
+                print("Opzione non valida, riprova.")
+                continue
+
     
 if __name__ == "__main__":
     main()
