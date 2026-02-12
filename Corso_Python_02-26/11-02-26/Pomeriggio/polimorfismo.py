@@ -30,3 +30,19 @@ stampa_OBJ = Stampa()
 stampa_OBJ.mostra()
 stampa_OBJ.mostra(42)
 stampa_OBJ.mostra("Ciao", "Mondo")
+
+# Duck typing
+class Cane():
+    def parla(self):
+        print("Il cane parla: Bau Bau!")
+        
+class Gatto():
+    def parla(self):
+        print("Il gatto parla: Miao Miao!")
+        
+def fai_parlare(o:object):
+    o.parla()
+    
+cane_OBJ, gatto_OBJ = Cane(), Gatto()
+fai_parlare(cane_OBJ)
+fai_parlare(gatto_OBJ)
