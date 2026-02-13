@@ -71,9 +71,9 @@ I metodi speciali possono essere sia vuoti che associati.
 # 16.EXTRA: Fai un meme sul corso
 
 - **[MEME](https://imgflip.com/i/ak1dgb)**
-- <div align="center">
-    <img src="https://imgflip.com/i/ak1dgb" width="100%" alt="Meme" />
-  </div>
+<div align="center">
+    <img src="meme.jpg" width="100%" alt="Meme" />
+</div>
 
 ---
 
