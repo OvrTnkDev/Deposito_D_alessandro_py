@@ -66,6 +66,12 @@ I metodi speciali possono essere sia vuoti che associati.
 
 ---
 
+## Software Gestionale Dipendenti
+
+# Link
+
+- [CLICCA](./0OP_GestionaleIngressoLavoro/)
+
 ## Link meme
 
 # 16.EXTRA: Fai un meme sul corso
