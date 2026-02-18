@@ -30,7 +30,10 @@ def decriptaStringa(stringa_criptata, spostamento):
     alfabeto = 'abcdefghijklmnopqrstuvwxyz'
     stringa_decriptata = ''
     for c in stringa_criptata:
-        stringa_decriptata = stringa_decriptata + alfabeto[(alfabeto.index(c) - spostamento) % 26]
+        if c.isalpha():
+            stringa_decriptata = stringa_decriptata + alfabeto[(alfabeto.index(c) - spostamento) % 26]
+        else:
+            stringa_decriptata = stringa_decriptata + c
     return stringa_decriptata
 
 
