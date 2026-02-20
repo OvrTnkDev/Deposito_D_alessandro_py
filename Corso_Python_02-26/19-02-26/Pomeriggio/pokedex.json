@@ -1,0 +1,60 @@
+{
+    "pokemon": [
+        {
+            "name": "nosepass",
+            "id": 299,
+            "height": 10,
+            "weight": 970,
+            "types": [
+                "rock"
+            ],
+            "abilities": [
+                "sturdy",
+                "magnet-pull",
+                "sand-force"
+            ]
+        },
+        {
+            "name": "barbaracle",
+            "id": 689,
+            "height": 13,
+            "weight": 960,
+            "types": [
+                "rock",
+                "water"
+            ],
+            "abilities": [
+                "tough-claws",
+                "sniper",
+                "pickpocket"
+            ]
+        },
+        {
+            "name": "magby",
+            "id": 240,
+            "height": 7,
+            "weight": 214,
+            "types": [
+                "fire"
+            ],
+            "abilities": [
+                "flame-body",
+                "vital-spirit"
+            ]
+        },
+        {
+            "name": "butterfree",
+            "id": 12,
+            "height": 11,
+            "weight": 320,
+            "types": [
+                "bug",
+                "flying"
+            ],
+            "abilities": [
+                "compound-eyes",
+                "tinted-lens"
+            ]
+        }
+    ]
+}
