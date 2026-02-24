@@ -1,0 +1,36 @@
+Matrice originale:
+[[ 2 95 51]
+ [20 81 52]
+ [41 97 46]]
+Sotto-matrice centrale:
+[[ 2 95 51]
+ [20 81 52]
+ [41 97 46]]
+Matrice trasposta:
+[[ 2 20 41]
+ [95 81 97]
+ [51 52 46]]
+Somma di tutti gli elementi della matrice: 485
+Media di tutti gli elementi della matrice: 53.888888888888886
+Matrice originale:
+[[84 15 15 71 47  5]
+ [83 12  6 37  2 76]
+ [40 66 94 60  3  3]
+ [34 18 36 47 32 96]
+ [87 62 76 52 35 45]
+ [55  1 21 32  6 43]]
+Sotto-matrice centrale:
+[[12  6 37  2]
+ [66 94 60  3]
+ [18 36 47 32]
+ [62 76 52 35]]
+Matrice trasposta:
+[[84 83 40 34 87 55]
+ [15 12 66 18 62  1]
+ [15  6 94 36 76 21]
+ [71 37 60 47 52 32]
+ [47  2  3 32 35  6]
+ [ 5 76  3 96 45 43]]
+Somma di tutti gli elementi della matrice: 1497
+Media di tutti gli elementi della matrice: 41.583333333333336
+Determinante della matrice: 29397751837.999973
