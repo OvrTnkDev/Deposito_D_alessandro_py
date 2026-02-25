@@ -51,13 +51,16 @@ df = pd.DataFrame(data)
 print("DataFrame Originale (prime 5 righe):")
 #visualizzo le prime 5 righe del DataFrame con il metodo head()
 print(df.head(5))
+print("\n" + "-"*60 + "\n")
 print("\nDataFrame Originale (ultime 5 righe):")
 #visualizzo le ultime 5 righe del DataFrame con il metodo tail()
 print(df.tail(5))
+print("\n" + "-"*60 + "\n")
 
 #visualizzo il tipo di dati di ciascuna colonna
 print("\nTipo di dati di ciascuna colonna:")
 print(df.dtypes)
+print("\n" + "-"*60 + "\n")
 
 #calcolo statistiche descrittive di base per le colonne numeriche
 print("\nStatistiche descrittive per le colonne numeriche:")
@@ -78,17 +81,20 @@ il quartile e' un valore che divide i dati in quattro parti uguali, quindi:
 max: valore massimo
 """
 print(df.describe())
+print("\n" + "-"*60 + "\n")
 
 # Rimozione dei duplicati
 df = df.drop_duplicates()
 print("\nDataFrame dopo la rimozione dei duplicati:")
 print(df)
+print("\n" + "-"*60 + "\n")
 
 #gestione dei valori mancanti sostituendoli con la mediana della rispettiva colonna
 #calcolo la mediana della colonna 'Età' ignorando i valori mancanti
 df_none = df.isnull().sum()
 print("\nValori mancanti per colonna:")
 print(df_none)
+print("\n" + "-"*60 + "\n")
 
 #sappiamo che i nulli sono solo in eta, quindi calcoliamo la mediana di eta ignorando i nulli
 median_age = df['Età'].median()
@@ -97,6 +103,17 @@ print("\nMediana dell'età (ignorando i valori mancanti):", median_age)
 df['Età'] = df['Età'].fillna(median_age)
 
 #aggiunta di una nuova colonna Categoria Età
-df['Categoria Età'] = df['Età'].apply(lambda x: 'Giovane' if x <= 18 else 'Adulto' if x <= 65 else 'Senior')
+#df['Categoria Età'] = df['Età'].apply(lambda x: 'Giovane' if x <= 18 else 'Adulto' if x <= 65 else 'Senior')
+
+#utilizzo pd.cut() per classificare le persone in categorie di età
+#pd.cut() fa tipo da ranking, quindi assegna un'etichetta a ciascun intervallo di età definito nei bins
+#pd.cut() è una funzione che consente di segmentare e ordinare i valori in bin (intervalli).
+df['Categoria Età'] = pd.cut(df['Età'], bins=[0, 18, 65, np.inf], labels=['Giovane', 'Adulto', 'Senior'])
+
 print("\nDataFrame con la nuova colonna 'Categoria Età':")
 print(df)
+print("\n" + "-"*60 + "\n")
+
+#vado a salvare il DataFrame pulito in un nuovo file CSV
+df.to_csv('Corso_Python_02-26/25-02-26/Mattina/data/data_cleaned.csv')
+print("\nDataFrame pulito salvato in 'data_cleaned.csv'")
