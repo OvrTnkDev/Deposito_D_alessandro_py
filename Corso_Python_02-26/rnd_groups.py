@@ -13,8 +13,8 @@ def crea_gruppi(n_persone:list, n_gruppi:int):
             print(f"Gruppo {idx + 1}: {', '.join(gruppo)}")
 
 
-list_name =["Fabio D'alessandro", "Gabriele Carucci", "Stefano Romanelli", "Elisabetta Carella", "Gabriele Giuliani",
-            "Veronica Veneroso", "Maria Visione", "Mariagrazia Nuzzolese",
-            "Valero Carìa","Ilaria Cuccaro", "Marco A. De Felicis", "Giovanni Iadalise"]
+list_name =["Fabio D'alessandro", "Gabriele Carucci", "Elisabetta Carella", "Gabriele Giuliani",
+             "Maria Visione", "Mariagrazia Nuzzolese", "Nico Davide Cognetta",
+            "Valerio Carìa", "Marco A. De Felicis", "Giovanni Iadalise"]
 
-print(crea_gruppi(list_name, 4))
+print(crea_gruppi(list_name, 5))
